@@ -15,7 +15,9 @@ W FastAPI każde zapytanie HTTP typu `GET` zwraca domyślnie status 200 OK, jeż
 Możemy jednak jawnie określić oczekiwany status odpowiedzi, korzystając z parametru `status_code` w dekoratorze endpointu.
 
 ```
-@app.get("/", status_code=200)def root():    return {"message": "Welcome to Rent Room"}
+@app.get("/", status_code=200)
+def root():
+    return {"message": "Welcome to Rent Room"}
 ```
 
 - `@app.get()` – definiuje endpoint obsługujący metodę GET.
@@ -107,7 +109,9 @@ Parametr `status_code` w dekoratorze endpointu określa status HTTP zwracany w p
 Przykładowo:
 
 ```
-@app.get("/", status_code=status.HTTP_200_OK)def root():    return {"message": "Welcome to Rent Room"}
+@app.get("/", status_code=status.HTTP_200_OK)
+def root():
+    return {"message": "Welcome to Rent Room"}
 ```
 
 Nie oznacza to, że endpoint zawsze zwróci 200.
@@ -133,57 +137,4 @@ Dzięki temu osoba korzystająca z API może zobaczyć, jaki status HTTP jest pr
 5. `raise` – służy do ręcznego zgłaszania wyjątków w Pythonie.
 6. 500 Internal Server Error – oznacza nieobsłużony błąd po stronie serwera.
 7. Swagger – automatycznie uwzględnia informacje o statusach odpowiedzi.
-
-## 6. Krótkie ćwiczenie utrwalające
-
-Spróbuj odpowiedzieć na trzy pytania bez zaglądania do notatki:
-
-1\. Jaki status HTTP FastAPI domyślnie zwraca dla poprawnie wykonanego endpointu GET?
-
-200 OK
-
-201 Created
-
-204 No Content
-
-500 Internal Server Error
-
-Poprawna odpowiedź
-
-GET domyślnie zwraca 200 OK.
-
-2\. Co daje użycie status.HTTP_200_OK zamiast wpisania liczby 200?
-
-Zmienia sposób działania endpointu
-
-Zapewnia obsługę błędów
-
-Poprawia czytelność kodu dzięki nazwanej stałej
-
-Automatycznie zwraca 500 przy błędzie
-
-Poprawna odpowiedź
-
-To czytelniejszy zapis. Oba warianty oznaczają ten sam status.
-
-3\. Co stanie się, gdy endpoint zgłosi nieobsłużony wyjątek ValueError?
-
-Zawsze zwróci 200
-
-Zwróci 500 Internal Server Error
-
-Zwróci 201 Created
-
-FastAPI automatycznie ponowi żądanie
-
-Poprawna odpowiedź
-
-Nieobsłużony wyjątek powoduje odpowiedź 500 Internal Server Error.
-
-Sprawdź odpowiedzi
-
-## Wynik: 3/3
-
-Spróbuj ponownie
-
 Moja wskazówka: Szczególnie zapamiętaj różnicę między `status_code` a `raise`. Pierwszy określa oczekiwany status odpowiedzi przy sukcesie, a drugi służy do zgłaszania wyjątków. To dwa różne mechanizmy, które będą często pojawiać się podczas budowania API w FastAPI.
